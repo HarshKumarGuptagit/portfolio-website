@@ -72,7 +72,7 @@ const Projects = () => {
   return (
     <section className="section-margin">
       <h2 className="title" style={{ color: 'var(--text-primary)' }}>Portfolio Projects</h2>
-      
+
       <div style={{ display: 'flex', gap: '1rem', marginBottom: '2rem', flexWrap: 'wrap' }}>
         {['All', 'Dashboard', 'Data Pipeline'].map((category) => (
           <button
@@ -99,7 +99,7 @@ const Projects = () => {
           <>
             {filteredProjects.map((project, index) => (
               <div key={project.id || project.title} className={`stagger-${(index % 12) + 1}`}>
-                <ProjectCard 
+                <ProjectCard
                   title={project.title}
                   description={project.description}
                   category={project.category}
@@ -115,10 +115,7 @@ const Projects = () => {
           </>
         )}
       </div>
-      
-      <div style={{ marginTop: '2.5rem', padding: '1.25rem', background: 'var(--bg-secondary)', borderRadius: '12px', border: '1px solid var(--border-color)', fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
-        <p><strong>Pro Tip:</strong> You can host your project data in a <code>projects.json</code> file on GitHub and update the <code>GITHUB_JSON_URL</code> in <code>Projects.jsx</code> for dynamic updates!</p>
-      </div>
+
     </section>
   );
 };
