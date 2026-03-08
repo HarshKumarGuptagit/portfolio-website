@@ -85,7 +85,7 @@ const Intro = () => {
               onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
             >
               <img
-                src="/images/profile.png"
+                src={`${import.meta.env.BASE_URL}images/profile.png`}
                 alt="Profile"
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
               />
