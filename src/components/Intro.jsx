@@ -14,13 +14,13 @@ const Intro = () => {
     <section className="section-margin">
       <div className="hero-wrapper" style={{ padding: '4rem 3rem' }}>
         <div className="hero-bg-blobs">
-          <div className="blob blob-1" style={{ 
+          <div className="blob blob-1" style={{
             background: 'radial-gradient(circle, var(--blob-color) 0%, rgba(88, 166, 255, 0) 70%)',
-            transform: `translate(${scrollY * 0.2}px, ${scrollY * 0.1}px) scale(${1 + scrollY * 0.0005})` 
+            transform: `translate(${scrollY * 0.2}px, ${scrollY * 0.1}px) scale(${1 + scrollY * 0.0005})`
           }}></div>
-          <div className="blob blob-2" style={{ 
+          <div className="blob blob-2" style={{
             background: 'radial-gradient(circle, var(--blob-color) 0%, rgba(110, 64, 201, 0) 70%)',
-            transform: `translate(${scrollY * -0.15}px, ${scrollY * 0.2}px) scale(${1 + scrollY * 0.0003})` 
+            transform: `translate(${scrollY * -0.15}px, ${scrollY * 0.2}px) scale(${1 + scrollY * 0.0003})`
           }}></div>
           <div className="grid-pattern"></div>
         </div>
@@ -85,7 +85,7 @@ const Intro = () => {
               onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
             >
               <img
-                src={`${import.meta.env.BASE_URL}images/profile.png`}
+                src={`${import.meta.env.BASE_URL}images/profile.jpg`}
                 alt="Profile"
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
               />
