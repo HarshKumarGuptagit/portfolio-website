@@ -46,7 +46,8 @@ const Intro = () => {
             </h2>
 
             <p style={{ fontSize: '1.2rem', color: 'var(--text-primary)', maxWidth: '600px', marginBottom: '2.5rem', lineHeight: '1.6' }}>
-              Data Analytics Engineer dedicated to building high-performance data architectures. From engineering seamless pipelines to designing intuitive dashboards, I focus on delivering the "North Star" metrics that fuel business success.
+              {/* Data Analytics Engineer dedicated to building high-performance data architectures. From engineering seamless pipelines to designing intuitive dashboards, I focus on delivering the "North Star" metrics that fuel business success. */}
+              Analytics Engineer who builds the data infrastructure that powers smarter decisions. I model data, engineer pipelines, and ship dashboards that teams actually use.
             </p>
 
             <div className="hero-socials" style={{ display: 'flex', gap: '1.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
