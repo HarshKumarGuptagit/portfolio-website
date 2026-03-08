@@ -388,24 +388,7 @@ button:focus-visible {
   }
 
   .projects-grid-wrapper {
-    overflow-x: auto;
-    overflow-y: hidden;
-    scroll-snap-type: x mandatory;
-    padding: 1rem 0 2rem 0;
-    margin: 0 -1rem;
-    display: flex;
-    gap: 1.5rem;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-
-  .projects-grid-wrapper::-webkit-scrollbar {
     display: none;
-  }
-
-  .projects-grid-wrapper > * {
-    min-width: 85vw;
-    scroll-snap-align: center;
   }
 }
 
@@ -535,3 +518,259 @@ button:focus-visible {
   }
 }
 
+/* =============================================
+   MOBILE FULL-SCREEN SNAP SECTIONS
+   ============================================= */
+@media (max-width: 768px) {
+  html {
+    scroll-snap-type: y proximity;
+  }
+
+  .mobile-snap-section {
+    scroll-snap-align: start;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+/* =============================================
+   MOBILE PROJECTS CARD DECK
+   ============================================= */
+.projects-mobile-deck {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .projects-mobile-deck {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 0.5rem 0 1rem 0;
+  }
+
+  /* Category filter on mobile */
+  .deck-filters {
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.25rem;
+  }
+
+  /* Deck container — cards stack here */
+  .deck-stage {
+    position: relative;
+    width: 100%;
+    height: 58vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    touch-action: pan-y;
+  }
+
+  /* Each card in the deck */
+  .deck-card {
+    position: absolute;
+    width: calc(100% - 0.5rem);
+    height: 100%;
+    border-radius: 20px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    cursor: grab;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    will-change: transform;
+    user-select: none;
+  }
+
+  .deck-card:active {
+    cursor: grabbing;
+  }
+
+  /* Behind-card stack visuals */
+  .deck-card.stack-1 {
+    transform: translateY(8px) scale(0.96) rotate(1.5deg);
+    z-index: 1;
+    filter: brightness(0.85);
+  }
+
+  .deck-card.stack-2 {
+    transform: translateY(14px) scale(0.92) rotate(-2deg);
+    z-index: 0;
+    filter: brightness(0.7);
+  }
+
+  .deck-card.top-card {
+    z-index: 10;
+    transform: translateY(0) scale(1) rotate(0deg);
+  }
+
+  /* Dragging state */
+  .deck-card.dragging {
+    transition: none;
+    cursor: grabbing;
+  }
+
+  /* Throw animations */
+  @keyframes throwRight {
+    0%   { transform: translateX(0) rotate(0deg); opacity: 1; }
+    100% { transform: translateX(130vw) rotate(25deg); opacity: 0; }
+  }
+
+  @keyframes throwLeft {
+    0%   { transform: translateX(0) rotate(0deg); opacity: 1; }
+    100% { transform: translateX(-130vw) rotate(-25deg); opacity: 0; }
+  }
+
+  .deck-card.throw-right {
+    animation: throwRight 0.38s cubic-bezier(0.4, 0, 0.8, 0.6) forwards;
+    pointer-events: none;
+  }
+
+  .deck-card.throw-left {
+    animation: throwLeft 0.38s cubic-bezier(0.4, 0, 0.8, 0.6) forwards;
+    pointer-events: none;
+  }
+
+  /* Card image */
+  .deck-card-image {
+    width: 100%;
+    height: 45%;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  /* Card body */
+  .deck-card-body {
+    padding: 1.1rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex: 1;
+    overflow: hidden;
+  }
+
+  .deck-card-category {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent-color);
+  }
+
+  .deck-card-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.3;
+    margin: 0;
+  }
+
+  .deck-card-desc {
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+  }
+
+  .deck-card-links {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: auto;
+  }
+
+  .deck-card-link {
+    font-size: 0.82rem;
+    font-weight: 600;
+    padding: 0.35rem 0.85rem;
+    border-radius: 20px;
+    border: 1px solid var(--accent-color);
+    color: var(--accent-color);
+    background: transparent;
+  }
+
+  .deck-card-link.primary {
+    background: var(--accent-color);
+    color: var(--bg-color);
+  }
+
+  /* Nav controls below the deck */
+  .deck-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 0 0 0;
+    gap: 1rem;
+  }
+
+  .deck-arrow-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 2px solid var(--border-color);
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+    flex-shrink: 0;
+  }
+
+  .deck-arrow-btn:hover {
+    border-color: var(--accent-color);
+    background: var(--accent-half);
+  }
+
+  .deck-arrow-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+
+  .deck-counter {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-align: center;
+    flex: 1;
+  }
+
+  .deck-hint {
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+    text-align: center;
+    opacity: 0.7;
+    margin-top: 0.25rem;
+  }
+
+  /* Empty state */
+  .deck-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 58vh;
+    gap: 1rem;
+    color: var(--text-secondary);
+  }
+
+  .deck-reset-btn {
+    padding: 0.6rem 1.4rem;
+    border-radius: 20px;
+    background: var(--accent-color);
+    color: var(--bg-color);
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+  }
+}

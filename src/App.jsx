@@ -30,7 +30,7 @@ function App() {
   return (
     <div className="container">
       {/* Theme Toggle Button */}
-      <button 
+      <button
         onClick={toggleTheme}
         className="theme-toggle-btn"
         style={{
@@ -58,8 +58,8 @@ function App() {
       </button>
 
       <ScrollProgress />
-      
-      <div id="intro" className="reveal reveal-up">
+
+      <div id="intro" className="reveal reveal-up mobile-snap-section">
         <Intro />
       </div>
 
@@ -71,7 +71,7 @@ function App() {
         <WorkExperience />
       </div>
 
-      <div id="projects">
+      <div id="projects" className="mobile-snap-section">
         <Projects />
       </div>
 
@@ -86,7 +86,7 @@ function App() {
       <FloatingContact />
 
       <footer style={{ marginTop: '8rem', paddingBottom: '2rem', textAlign: 'center', color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
-        <p>© {new Date().getFullYear()} Harsh Kumar Gupta. Built with React.</p>
+        <p>© {new Date().getFullYear()} Harsh Kumar Gupta. </p>
       </footer>
     </div>
   );
