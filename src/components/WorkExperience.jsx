@@ -4,7 +4,7 @@ import { Briefcase } from 'lucide-react';
 const WorkExperience = () => {
   const experiences = [
     {
-      title: "Data Analytics Engineer - Hyderabad",
+      title: "Data Analytics Engineer",
       company: "Nxtwave Disruptive Technologies Pvt. Ltd., Hyderabad",
       period: "Dec 2024 - Present",
       points: [
@@ -18,7 +18,7 @@ const WorkExperience = () => {
       current: true
     },
     {
-      title: "Analytics Engineer Intern - Hyderabad",
+      title: "Analytics Engineer Intern",
       company: "Nxtwave Disruptive Technologies Pvt. Ltd., Hyderabad",
       period: "Jun 2024 - Dec 2024",
       points: [
