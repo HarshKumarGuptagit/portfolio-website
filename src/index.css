@@ -57,6 +57,9 @@ body {
   min-width: 320px;
   min-height: 100vh;
   overflow-x: hidden;
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  transition: background-color 0.4s ease, color 0.4s ease;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -242,10 +245,10 @@ button:focus-visible {
 }
 
 .glass-panel {
-  background: rgba(22, 27, 34, 0.7);
+  background: var(--bg-secondary);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(48, 54, 61, 0.5);
+  border: 1px solid var(--border-color);
   border-radius: 12px;
 }
 
@@ -283,6 +286,12 @@ button:focus-visible {
     flex-direction: column-reverse !important;
     align-items: center !important;
     text-align: center !important;
+    gap: 2rem !important;
+  }
+
+  /* Make profile image smaller on mobile */
+  .hero-content-wrapper > div:first-child {
+    flex: 0 0 auto !important;
   }
 }
 
@@ -407,6 +416,14 @@ button:focus-visible {
   
   .hero-wrapper {
     padding: 2rem 1.25rem !important;
+  }
+
+  /* Smaller theme toggle on mobile */
+  .theme-toggle-btn {
+    top: 1rem !important;
+    right: 1rem !important;
+    width: 38px !important;
+    height: 38px !important;
   }
 }
 

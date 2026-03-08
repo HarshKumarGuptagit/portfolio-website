@@ -32,6 +32,7 @@ function App() {
       {/* Theme Toggle Button */}
       <button 
         onClick={toggleTheme}
+        className="theme-toggle-btn"
         style={{
           position: 'fixed',
           top: '2rem',
