@@ -6,59 +6,54 @@ import {
 } from 'lucide-react';
 
 const toolIcons = {
-  // Languages
-  "SQL": <Terminal size={14} />,
+  // Data Engineering
   "Python": <Cpu size={14} />,
-  "JavaScript": <Code2 size={14} />,
-  // Warehousing
-  "BigQuery": <Layers size={14} />,
-  "Snowflake": <Box size={14} />,
-  "dbt": <Workflow size={14} />,
-  "PostgreSQL": <Database size={14} />,
   "Pandas": <Activity size={14} />,
-  // Viz
-  "Tableau": <BarChart3 size={14} />,
-  "Looker Studio": <Search size={14} />,
-  "PowerBI": <LineChart size={14} />,
-  "Matplotlib": <Activity size={14} />,
-  // DE
-  "Airflow": <Zap size={14} />,
+  "NumPy": <Activity size={14} />,
   "PySpark": <Layers size={14} />,
-  "AWS CodeCommit": <Server size={14} />,
-  "Git/GitHub": <GitBranch size={14} />,
+  "Apache Spark": <Zap size={14} />,
+  "dbt": <Workflow size={14} />,
+  "SQL": <Terminal size={14} />,
   "Docker": <Box size={14} />,
-  // Modeling
-  "Star Schema": <Layers size={14} />,
-  "Snowflake Schema": <Layers size={14} />,
-  "Dimensional Modeling": <Workflow size={14} />,
-  "Kimball Methodology": <ShieldCheck size={14} />
+  "Apache Airflow": <Workflow size={14} />,
+  "ETL/ELT Pipelines": <Workflow size={14} />,
+  "Git/GitHub": <GitBranch size={14} />,
+  "Data Structures & Algorithms": <Code2 size={14} />,
+  
+  // Cloud & Warehousing
+  "GCP": <Layers size={14} />,
+  "BigQuery": <Database size={14} />,
+  "Cloud Run": <Server size={14} />,
+  "AWS": <Server size={14} />,
+  "Data Modeling": <Database size={14} />,
+  
+  // Visualization & Analytics
+  "Looker Studio": <BarChart3 size={14} />,
+  "Tableau": <LineChart size={14} />,
+  "Exploratory Data Analysis": <Search size={14} />,
+  "Storytelling": <Zap size={14} />
 };
 
 const tools = [
   {
-    category: "Languages",
-    icon: <Code2 size={24} color="var(--accent-color)" />,
-    items: ["SQL", "Python", "JavaScript"]
+    category: "Data Engineering",
+    icon: <Workflow size={24} color="var(--accent-color)" />,
+    items: [
+      "Python", "SQL", "dbt", "Apache Airflow", 
+      "Apache Spark", "PySpark", "Pandas", "NumPy",
+      "Docker", "ETL/ELT Pipelines", "Git/GitHub", 
+      "Data Structures & Algorithms"
+    ]
   },
   {
-    category: "Data Warehousing & Transformation",
+    category: "Cloud & Warehousing",
     icon: <Database size={24} color="var(--accent-color)" />,
-    items: ["BigQuery", "Snowflake", "dbt", "PostgreSQL", "Pandas"]
+    items: ["GCP", "BigQuery", "Cloud Run", "AWS", "Data Modeling"]
   },
   {
-    category: "Visualization & BI",
+    category: "Visualization & Analytics",
     icon: <LineChart size={24} color="var(--accent-color)" />,
-    items: ["Tableau", "Looker Studio", "PowerBI", "Matplotlib"]
-  },
-  {
-    category: "Data Engineering / Orchestration",
-    icon: <Server size={24} color="var(--accent-color)" />,
-    items: ["Airflow", "PySpark", "AWS CodeCommit", "Git/GitHub", "Docker"]
-  },
-  {
-    category: "Data Modeling",
-    icon: <Database size={24} color="var(--accent-color)" />,
-    items: ["Star Schema", "Snowflake Schema", "Dimensional Modeling", "Kimball Methodology"]
+    items: ["Looker Studio", "Tableau", "Data Modeling", "Exploratory Data Analysis", "Storytelling"]
   }
 ];
 
