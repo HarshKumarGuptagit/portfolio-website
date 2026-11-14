@@ -51,7 +51,7 @@ const ResumeModal = ({ isOpen, onClose }) => {
               </h2>
               <span className="modal-status-badge">
                 <CheckCircle2 size={12} />
-                READY FOR DOWNLOAD & REVIEW
+                READY FOR DOWNLOAD &amp; REVIEW
               </span>
             </div>
           </div>
@@ -92,6 +92,16 @@ const ResumeModal = ({ isOpen, onClose }) => {
               <X size={18} />
             </button>
           </div>
+        </div>
+
+        {/* Mobile quick actions strip (visible on small screens) */}
+        <div className="modal-mobile-quickbar">
+          <a href={resumeUrl} target="_blank" rel="noopener noreferrer" className="mobile-bar-action">
+            <ExternalLink size={14} /> Open Full Document
+          </a>
+          <a href={resumeUrl} download="Harsh_Kumar_Gupta_Resume.pdf" className="mobile-bar-action primary">
+            <Download size={14} /> Download PDF
+          </a>
         </div>
 
         {/* Embedded PDF Document Body */}

@@ -1612,8 +1612,32 @@ body.light-theme .clean-navbar.is-scrolled {
   transform: translateY(0);
 }
 
+.social-email-mobile {
+  display: none;
+}
+
+.social-email-desktop {
+  display: inline;
+}
+
+.modal-mobile-quickbar {
+  display: none;
+}
+
 /* ==========================================================================
-   RESPONSIVENESS
+   MOBILE BOTTOM CONTACT BAR
+   ========================================================================== */
+
+.mobile-bottom-bar {
+  display: none;
+}
+
+.desktop-only {
+  display: flex !important;
+}
+
+/* ==========================================================================
+   RESPONSIVE MEDIA QUERIES (TABLET & MOBILE)
    ========================================================================== */
 
 @media (max-width: 1320px) {
@@ -1622,42 +1646,270 @@ body.light-theme .clean-navbar.is-scrolled {
   }
 }
 
+@media (max-width: 992px) {
+  .hero-two-column-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    text-align: center;
+  }
+
+  .hero-column-showcase {
+    order: -1;
+  }
+
+  .hero-status-row {
+    justify-content: center;
+  }
+
+  .hero-role-terminal {
+    justify-content: center;
+  }
+
+  .hero-pitch-lead {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-cta-group {
+    justify-content: center;
+  }
+
+  .hero-social-strip {
+    justify-content: center;
+  }
+}
+
 @media (max-width: 768px) {
+  /* Prevent horizontal scroll */
+  body {
+    overflow-x: hidden;
+    padding-bottom: 75px; /* Reserve space for mobile bottom bar */
+  }
+
+  .desktop-only {
+    display: none !important;
+  }
+
+  .mobile-bottom-bar {
+    display: flex !important;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(14, 19, 29, 0.95);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-top: 1px solid var(--border-clean);
+    padding: 0.65rem 1rem;
+    padding-bottom: max(0.65rem, env(safe-area-inset-bottom));
+    z-index: 2500;
+    gap: 0.75rem;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.6);
+  }
+
+  .mobile-bar-btn {
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    padding: 0.65rem;
+    border-radius: 8px;
+    font-size: 0.84rem;
+    font-weight: 600;
+    text-decoration: none;
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border-clean);
+  }
+
+  .mobile-bar-btn.primary {
+    background: var(--cyan-stream);
+    color: #080b11;
+    font-weight: 700;
+    border-color: var(--cyan-stream);
+  }
+
   .main-content-layout {
-    padding-top: 5rem;
+    padding: 5rem 1rem 3rem 1rem;
+    max-width: 100%;
+  }
+
+  .section-margin {
+    margin-bottom: 4rem;
+  }
+
+  .section-heading-clean {
+    font-size: 1.7rem;
+    letter-spacing: -0.02em;
+  }
+
+  .section-subtext-clean {
+    font-size: 0.92rem;
+  }
+
+  /* Navbar on Mobile */
+  .clean-navbar-inner {
+    padding: 0.75rem 1rem;
   }
 
   .navbar-links-desktop {
-    display: none;
+    display: none !important;
   }
 
   .navbar-mobile-toggle {
-    display: flex;
+    display: flex !important;
   }
 
+  /* Hero Section on Mobile */
   .hero-clean-wrapper {
-    padding: 2rem 1.5rem;
+    padding: 1.75rem 1.15rem;
+    border-radius: 16px;
   }
 
   .hero-name-heading {
     font-size: 2.15rem;
+    line-height: 1.18;
+    margin-bottom: 0.5rem;
   }
 
-  .hero-avatar-box {
-    width: 72px;
-    height: 72px;
+  .hero-avatar-card {
+    width: 170px;
+    height: 170px;
+  }
+
+  .avatar-frame-large {
+    width: 160px;
+    height: 160px;
+    border-width: 2.5px;
+  }
+
+  .avatar-ambient-glow {
+    inset: -6px;
+    filter: blur(8px);
+  }
+
+  .hero-role-terminal {
+    font-size: 0.98rem;
+    margin-bottom: 1rem;
+  }
+
+  .hero-pitch-lead {
+    font-size: 0.96rem;
+    line-height: 1.6;
+    margin-bottom: 1.75rem;
+  }
+
+  .hero-cta-group {
+    width: 100%;
+    gap: 0.75rem;
+  }
+
+  .cta-btn-primary, .cta-btn-secondary {
+    flex: 1 1 130px;
+    justify-content: center;
+    padding: 0.7rem 1rem;
+    font-size: 0.84rem;
+  }
+
+  .social-email-desktop {
+    display: none !important;
+  }
+
+  .social-email-mobile {
+    display: inline !important;
   }
 
   .hero-social-strip {
-    margin-left: 0;
+    gap: 0.65rem;
+    font-size: 0.82rem;
     width: 100%;
   }
 
-  .section-heading-clean {
-    font-size: 1.65rem;
+  /* Cards on Mobile */
+  .pipeline-stage-card, 
+  .exp-log-card, 
+  .repo-card-minimal, 
+  .credential-card-clean {
+    padding: 1.25rem 1rem;
+    border-radius: 12px;
   }
 
-  .repo-card-minimal {
-    padding: 1.5rem;
+  .repo-main-title {
+    font-size: 1.15rem;
+    word-break: break-word;
+  }
+
+  .repo-pipeline-flow {
+    font-size: 0.68rem;
+    padding: 0.35rem 0.6rem;
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .exp-role-title {
+    font-size: 1.15rem;
+  }
+
+  .exp-company-text {
+    font-size: 1.05rem;
+  }
+
+  .exp-bullet-item {
+    font-size: 0.88rem;
+  }
+
+  /* Mobile Resume Modal */
+  .resume-modal-overlay {
+    padding: 0.5rem;
+  }
+
+  .resume-modal-window {
+    height: 94vh;
+    border-radius: 12px;
+  }
+
+  .resume-modal-header {
+    padding: 0.75rem 1rem;
+  }
+
+  .modal-filename {
+    font-size: 0.84rem;
+  }
+
+  .desktop-text-only {
+    display: none !important;
+  }
+
+  .modal-mobile-quickbar {
+    display: flex;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: var(--bg-surface);
+    border-bottom: 1px solid var(--border-clean);
+  }
+
+  .mobile-bar-action {
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    padding: 0.45rem 0.65rem;
+    border-radius: 6px;
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    font-weight: 600;
+    text-decoration: none;
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border-clean);
+  }
+
+  .mobile-bar-action.primary {
+    background: var(--cyan-stream);
+    color: #080b11;
+    border-color: var(--cyan-stream);
   }
 }

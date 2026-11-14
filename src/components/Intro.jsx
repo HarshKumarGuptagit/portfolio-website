@@ -89,7 +89,8 @@ const Intro = ({ onOpenResume }) => {
                 aria-label="Email Harsh Kumar Gupta"
               >
                 <Mail size={18} />
-                <span>harshkumargupta49@gmail.com</span>
+                <span className="social-email-desktop">harshkumargupta49@gmail.com</span>
+                <span className="social-email-mobile">Email</span>
               </a>
             </div>
 
