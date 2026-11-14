@@ -65,24 +65,31 @@ const FloatingContact = () => {
         <button
           onClick={() => setIsOpen(!isOpen)}
           style={{
-            width: '60px',
-            height: '60px',
+            width: '48px',
+            height: '48px',
             borderRadius: '50%',
-            backgroundColor: 'var(--accent-color)',
-            color: 'var(--bg-color)',
+            backgroundColor: 'var(--cyan-stream)',
+            color: '#080b11',
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
             border: 'none',
-            boxShadow: 'var(--card-shadow)',
+            boxShadow: '0 8px 24px rgba(56, 189, 248, 0.4)',
             cursor: 'pointer',
-            transition: 'transform 0.2s, background-color 0.2s',
+            transition: 'transform 0.2s, box-shadow 0.2s',
             padding: 0
           }}
-          onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.1)'}
-          onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
+          onMouseOver={(e) => {
+            e.currentTarget.style.transform = 'scale(1.08)';
+            e.currentTarget.style.boxShadow = '0 10px 28px rgba(56, 189, 248, 0.55)';
+          }}
+          onMouseOut={(e) => {
+            e.currentTarget.style.transform = 'scale(1)';
+            e.currentTarget.style.boxShadow = '0 8px 24px rgba(56, 189, 248, 0.4)';
+          }}
+          aria-label="Toggle contact menu"
         >
-          {isOpen ? <X size={28} /> : <MessageCircle size={28} />}
+          {isOpen ? <X size={22} /> : <MessageCircle size={22} />}
         </button>
       </div>
 

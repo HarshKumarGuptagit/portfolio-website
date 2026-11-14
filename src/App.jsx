@@ -1,19 +1,37 @@
 import React, { useState, useEffect } from 'react';
-import { Sun, Moon } from 'lucide-react';
 import useScrollReveal from './hooks/useScrollReveal';
-import ScrollProgress from './components/ScrollProgress';
-import Intro from './components/Intro';
+import Navbar from './components/Navbar';
+import DataPipelineSpine from './components/DataPipelineSpine';
 import Background from './components/Background';
+import Intro from './components/Intro';
 import Tools from './components/Tools';
 import WorkExperience from './components/WorkExperience';
-import Education from './components/Education';
-import Certifications from './components/Certifications';
 import Projects from './components/Projects';
+import Education from './components/Education';
+import ResumeModal from './components/ResumeModal';
 import FloatingContact from './components/FloatingContact';
 import './index.css';
 
+class ErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false };
+  }
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+  componentDidCatch(error, errorInfo) {
+    console.error("ErrorBoundary caught:", error, errorInfo);
+  }
+  render() {
+    if (this.state.hasError) return this.props.fallback || null;
+    return this.props.children;
+  }
+}
+
 function App() {
   const [theme, setTheme] = useState('dark');
+  const [isResumeOpen, setIsResumeOpen] = useState(false);
   useScrollReveal();
 
   useEffect(() => {
@@ -25,71 +43,93 @@ function App() {
   }, [theme]);
 
   const toggleTheme = () => {
-    setTheme(prev => prev === 'dark' ? 'light' : 'dark');
+    setTheme(prev => (prev === 'dark' ? 'light' : 'dark'));
   };
 
+  const handleOpenResume = () => setIsResumeOpen(true);
+  const handleCloseResume = () => setIsResumeOpen(false);
+
   return (
-    <div className="container">
-      {/* Theme Toggle Button */}
-      <Background />
-      <button
-        onClick={toggleTheme}
-        className="theme-toggle-btn"
-        style={{
-          position: 'fixed',
-          top: '2rem',
-          right: '2rem',
-          zIndex: 3000,
-          width: '45px',
-          height: '45px',
-          borderRadius: '50%',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          padding: 0,
-          background: 'var(--bg-secondary)',
-          border: '1px solid var(--border-color)',
-          boxShadow: 'var(--card-shadow)',
-          transition: 'transform 0.2s'
-        }}
-        onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.1)'}
-        onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
-        title={`Switch to ${theme === 'dark' ? 'Light' : 'Dark'} Mode`}
-      >
-        {theme === 'dark' ? <Sun size={20} color="var(--accent-color)" /> : <Moon size={20} color="var(--accent-color)" />}
-      </button>
+    <div className="portfolio-app-root">
+      {/* Background with clean data stream tracks */}
+      <ErrorBoundary fallback={null}>
+        <Background />
+      </ErrorBoundary>
 
-      <ScrollProgress />
+      {/* Vertical Data Pipeline Scroll Animation & Indicator */}
+      <DataPipelineSpine />
 
-      <div id="intro" className="reveal reveal-up mobile-snap-section">
-        <Intro />
-      </div>
+      {/* Minimal Top Navigation */}
+      <Navbar 
+        theme={theme} 
+        toggleTheme={toggleTheme} 
+        onOpenResume={handleOpenResume} 
+      />
 
-      <div id="tools">
-        <Tools />
-      </div>
+      {/* Main Container Layout */}
+      <main className="main-content-layout">
+        
+        <div id="intro" className="reveal reveal-up">
+          <Intro onOpenResume={handleOpenResume} />
+        </div>
 
-      <div id="work" className="reveal reveal-up">
-        <WorkExperience />
-      </div>
+        <div id="tools" className="reveal reveal-up">
+          <Tools />
+        </div>
 
-      <div id="projects" className="mobile-snap-section">
-        <Projects />
-      </div>
+        <div id="work" className="reveal reveal-up">
+          <WorkExperience />
+        </div>
 
-      <div id="education" className="reveal reveal-up">
-        <Education />
-      </div>
+        <div id="projects" className="reveal reveal-up">
+          <Projects />
+        </div>
 
-      <div id="certifications">
-        <Certifications />
-      </div>
+        <div id="education" className="reveal reveal-up">
+          <Education />
+        </div>
 
-      <FloatingContact />
+        <FloatingContact />
 
-      <footer style={{ marginTop: '8rem', paddingBottom: '2rem', textAlign: 'center', color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
-        <p>© {new Date().getFullYear()} Harsh Kumar Gupta. </p>
-      </footer>
+        <footer className="clean-footer">
+          <div className="clean-footer-inner">
+            <p className="footer-lead">
+              HARSH KUMAR GUPTA <span className="footer-dot">•</span> DATA ENGINEER
+            </p>
+            <p className="footer-sub">
+              Scalable Telemetry & ETL Pipelines • AWS & GCP • Bengaluru, India
+            </p>
+            <div className="footer-links-row">
+              <a href="https://github.com/HarshKumarGuptagit" target="_blank" rel="noopener noreferrer">
+                GitHub
+              </a>
+              <span className="footer-sep">/</span>
+              <a href="https://www.linkedin.com/in/harshkumargupta49/" target="_blank" rel="noopener noreferrer">
+                LinkedIn
+              </a>
+              <span className="footer-sep">/</span>
+              <a href="mailto:harshkumargupta49@gmail.com">
+                Email
+              </a>
+              <span className="footer-sep">/</span>
+              <button 
+                onClick={handleOpenResume}
+                className="clean-footer-text-btn"
+                title="View Resume in Pop-up"
+              >
+                Resume.pdf
+              </button>
+            </div>
+          </div>
+        </footer>
+
+      </main>
+
+      {/* Dedicated Pop-Up Overlay (Modal) */}
+      <ResumeModal 
+        isOpen={isResumeOpen} 
+        onClose={handleCloseResume} 
+      />
     </div>
   );
 }

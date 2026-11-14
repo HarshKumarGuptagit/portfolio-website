@@ -1,93 +1,115 @@
-import { 
-  Database, LineChart, Code2, Server, 
-  Terminal, Layers, BarChart3, Activity, 
-  GitBranch, Box, Cpu, Workflow, 
-  Search, ShieldCheck, Zap
-} from 'lucide-react';
+import React from 'react';
+import { Radio, Cpu, Database, GitMerge, CheckCircle, ArrowRight } from 'lucide-react';
 
-const toolIcons = {
-  // Data Engineering
-  "Python": <Cpu size={14} />,
-  "Pandas": <Activity size={14} />,
-  "NumPy": <Activity size={14} />,
-  "PySpark": <Layers size={14} />,
-  "Apache Spark": <Zap size={14} />,
-  "dbt": <Workflow size={14} />,
-  "SQL": <Terminal size={14} />,
-  "Docker": <Box size={14} />,
-  "Apache Airflow": <Workflow size={14} />,
-  "ETL/ELT Pipelines": <Workflow size={14} />,
-  "Git/GitHub": <GitBranch size={14} />,
-  "Data Structures & Algorithms": <Code2 size={14} />,
-  
-  // Cloud & Warehousing
-  "GCP": <Layers size={14} />,
-  "BigQuery": <Database size={14} />,
-  "Cloud Run": <Server size={14} />,
-  "AWS": <Server size={14} />,
-  "Data Modeling": <Database size={14} />,
-  
-  // Visualization & Analytics
-  "Looker Studio": <BarChart3 size={14} />,
-  "Tableau": <LineChart size={14} />,
-  "Exploratory Data Analysis": <Search size={14} />,
-  "Storytelling": <Zap size={14} />
-};
-
-const tools = [
+const pipelineStages = [
   {
-    category: "Data Engineering",
-    icon: <Workflow size={24} color="var(--accent-color)" />,
-    items: [
-      "Python", "SQL", "dbt", "Apache Airflow", 
-      "Apache Spark", "PySpark", "Pandas", "NumPy",
-      "Docker", "ETL/ELT Pipelines", "Git/GitHub", 
-      "Data Structures & Algorithms"
+    step: "01",
+    stage: "Ingestion & Streaming",
+    icon: <Radio size={18} color="#38bdf8" />,
+    summary: "Capturing high-velocity telemetry, real-time event streams, CDC change feeds, and multi-channel API data.",
+    tech: [
+      "Spark Streaming (Structured Streaming)",
+      "Apache Kafka",
+      "Debezium CDC",
+      "AWS Lambda (Serverless)",
+      "GCP Cloud Run & Cloud Scheduler",
+      "Python",
+      "REST APIs"
     ]
   },
   {
-    category: "Cloud & Warehousing",
-    icon: <Database size={24} color="var(--accent-color)" />,
-    items: ["GCP", "BigQuery", "Cloud Run", "AWS", "Data Modeling"]
+    step: "02",
+    stage: "Distributed Compute & Processing",
+    icon: <Cpu size={18} color="#34d399" />,
+    summary: "Distributed windowing, real-time micro-batch processing, and high-throughput transformations.",
+    tech: [
+      "Apache Spark",
+      "Databricks (Delta Lake, PySpark)",
+      "Polars (High-Performance Engine)",
+      "PyArrow",
+      "Apache Airflow (DAG Orchestration)",
+      "Pandas & NumPy"
+    ]
   },
   {
-    category: "Visualization & Analytics",
-    icon: <LineChart size={24} color="var(--accent-color)" />,
-    items: ["Looker Studio", "Tableau", "Data Modeling", "Exploratory Data Analysis", "Storytelling"]
+    step: "03",
+    stage: "Storage & Cloud Warehousing",
+    icon: <Database size={18} color="#fbbf24" />,
+    summary: "Scalable object lakes, partitioned analytical warehouses, and enterprise column stores.",
+    tech: [
+      "Google BigQuery (Partitioning & Clustering)",
+      "Snowflake",
+      "Amazon S3 (Medallion Data Lake)",
+      "MinIO Object Storage",
+      "Elasticsearch Telemetry Indexes"
+    ]
+  },
+  {
+    step: "04",
+    stage: "Transformation & Modeling",
+    icon: <GitMerge size={18} color="#a78bfa" />,
+    summary: "Medallion architecture staging, dimensional schemas, and historical audit tracking.",
+    tech: [
+      "dbt (Bronze, Silver, Gold Medallion)",
+      "SCD Type-2 Dimensional Tracking",
+      "Advanced SQL & Stored Procedures",
+      "Analytical Data Marts"
+    ]
+  },
+  {
+    step: "05",
+    stage: "Quality, Observability & Serving",
+    icon: <CheckCircle size={18} color="#f472b6" />,
+    summary: "Automated test suites, backfills, anomaly detection, and governed self-service analytics.",
+    tech: [
+      "dbt Testing & Documentation",
+      "S3 Ingestion Backfills",
+      "Looker Studio Dashboards",
+      "Hex Governed Self-Service Analytics",
+      "Cloud IAM Security & Governance"
+    ]
   }
 ];
 
-import React from 'react';
-
 const Tools = () => {
   return (
-    <section className="section-margin">
-      <h2 className="title" style={{ color: 'var(--text-primary)' }}>Tools & Technologies</h2>
-      <div className="tech-grid reveal-stagger">
-        {tools.map((toolGroup, index) => (
-          <div key={index} className={`card stagger-${index + 1}`}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.5rem' }}>
-              {toolGroup.icon}
-              <h3 style={{ fontSize: '1.25rem', margin: 0, color: 'var(--text-primary)' }}>{toolGroup.category}</h3>
+    <section className="section-margin" id="tools" aria-labelledby="tools-heading">
+      <div className="section-header-clean">
+        <div className="section-tag-mono">02 // STACK ARCHITECTURE</div>
+        <h2 id="tools-heading" className="section-heading-clean">Data Pipeline Capabilities</h2>
+        <p className="section-subtext-clean">
+          Technologies structured across the full modern data lifecycle: from real-time streaming to governed serving.
+        </p>
+      </div>
+
+      <div className="pipeline-stages-container">
+        {pipelineStages.map((stage, idx) => (
+          <div key={stage.step} className="pipeline-stage-card">
+            
+            <div className="stage-card-meta">
+              <span className="stage-index-badge">{stage.step}</span>
+              <div className="stage-icon-wrap">{stage.icon}</div>
+              <h3 className="stage-title">{stage.stage}</h3>
             </div>
-            <ul style={{ listStyleType: 'none', padding: 0, margin: 0, display: 'flex', flexWrap: 'wrap', gap: '0.75rem' }}>
-              {toolGroup.items.map((item, i) => (
-                <li key={i} style={{
-                  background: 'var(--accent-half)',
-                  color: 'var(--accent-color)',
-                  padding: '0.4rem 0.8rem',
-                  borderRadius: '20px',
-                  fontSize: '0.9rem',
-                  border: '1px solid var(--accent-half)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '0.5rem'
-                }}>
-                  {toolIcons[item]}
+
+            <p className="stage-summary">{stage.summary}</p>
+
+            <div className="stage-tech-pills">
+              {stage.tech.map((item, tIdx) => (
+                <span 
+                  key={tIdx} 
+                  className={`tech-badge-clean ${item.includes('Spark Streaming') ? 'highlight-tech' : ''}`}
+                >
                   {item}
-                </li>
+                </span>
               ))}
-            </ul>
+            </div>
+
+            {idx < pipelineStages.length - 1 && (
+              <div className="stage-connector-arrow">
+                <ArrowRight size={14} />
+              </div>
+            )}
           </div>
         ))}
       </div>

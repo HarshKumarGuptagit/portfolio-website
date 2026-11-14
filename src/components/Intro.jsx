@@ -1,104 +1,126 @@
-import React, { useEffect, useState } from 'react';
-import { Github, Linkedin, Mail } from 'lucide-react';
+import React from 'react';
+import { Github, Linkedin, Mail, ArrowDown, FileText } from 'lucide-react';
 
-const Intro = () => {
-  const [scrollY, setScrollY] = useState(0);
-
-  useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
+const Intro = ({ onOpenResume }) => {
   return (
-    <section className="section-margin">
-      <div className="hero-wrapper" style={{ padding: '4rem 3rem' }}>
-        <div className="hero-bg-blobs">
-          <div className="blob blob-1" style={{
-            background: 'radial-gradient(circle, var(--blob-color) 0%, rgba(88, 166, 255, 0) 70%)',
-            transform: `translate(${scrollY * 0.2}px, ${scrollY * 0.1}px) scale(${1 + scrollY * 0.0005})`
-          }}></div>
-          <div className="blob blob-2" style={{
-            background: 'radial-gradient(circle, var(--blob-color) 0%, rgba(110, 64, 201, 0) 70%)',
-            transform: `translate(${scrollY * -0.15}px, ${scrollY * 0.2}px) scale(${1 + scrollY * 0.0003})`
-          }}></div>
-          <div className="grid-pattern"></div>
-        </div>
+    <section className="section-margin intro-hero-container" id="intro" aria-label="Introduction and Overview">
+      <div className="hero-clean-wrapper">
 
-        <div className="hero-content-wrapper" style={{
-          position: 'relative',
-          zIndex: 1,
-          display: 'flex',
-          flexDirection: 'row',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          gap: '4rem',
-          flexWrap: 'wrap'
-        }}>
+        <div className="hero-two-column-grid">
+          
+          {/* Left Column: Authoritative Text & Actions */}
+          <div className="hero-column-content">
+            
+            {/* Live Status Pill */}
+            <div className="hero-status-row">
+              <span className="clean-status-indicator">
+                <span className="status-ping-dot" />
+                Active • Bengaluru, India
+              </span>
+              <span className="clean-status-detail">
+                Data Engineer @ <strong>Avathon</strong>
+              </span>
+            </div>
 
-          {/* Left Side: Text and Links */}
-          <div className="hero-text-container" style={{ flex: '1 1 300px' }}>
-            <h1 className="title hero-title" style={{ marginBottom: '1rem', color: 'var(--text-primary)' }}>
-              Hi, I'm <span style={{ color: 'var(--accent-color)' }}>Harsh Kumar Gupta</span>
+            {/* Name Heading with Subtle Glow */}
+            <h1 className="hero-name-heading">
+              Harsh Kumar <span className="hero-name-accent">Gupta</span>
             </h1>
-            <h2 className="subtitle hero-subtitle" style={{ color: 'var(--text-secondary)' }}>
-              Data Analytics Engineer
-            </h2>
 
-            <p style={{ fontSize: '1.2rem', color: 'var(--text-primary)', maxWidth: '600px', marginBottom: '2.5rem', lineHeight: '1.6' }}>
-              Analytics Engineer who builds the data infrastructure that powers smarter decisions. I model data, engineer pipelines, and ship dashboards that teams actually use.
+            {/* Animated Role Monospace Line */}
+            <div className="hero-role-terminal">
+              <span className="terminal-prefix">&gt;</span>
+              <span className="terminal-role-text">Data Engineer</span>
+              <span className="terminal-divider">/</span>
+              <span className="terminal-sub-role">Analytics Engineer</span>
+              <span className="terminal-cursor" />
+            </div>
+
+            {/* Reduced Concise Pitch */}
+            <p className="hero-pitch-lead">
+              Data Engineer building scalable batch and real-time streaming pipelines (<strong>Spark Streaming</strong>, <strong>AWS Lambda</strong>, <strong>Kafka</strong>) 
+              and cloud Medallion data platforms across <strong>AWS</strong> &amp; <strong>GCP</strong>.
             </p>
 
-            <div className="hero-socials" style={{ display: 'flex', gap: '1.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
-              <a href="https://github.com/Harshkumarguptagit" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--text-primary)' }}>
-                <Github size={24} />
-                <span style={{ fontSize: '1rem', fontWeight: '500' }}>GitHub</span>
+            {/* Primary Action Buttons */}
+            <div className="hero-cta-group">
+              <a href="#projects" className="cta-btn-primary" aria-label="Scroll to featured GitHub repositories">
+                <span>Explore Repositories</span>
+                <ArrowDown size={15} />
               </a>
-              <a href="https://www.linkedin.com/in/harshkumargupta49/" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--text-primary)' }}>
-                <Linkedin size={24} />
-                <span style={{ fontSize: '1rem', fontWeight: '500' }}>LinkedIn</span>
+
+              <button 
+                onClick={onOpenResume} 
+                className="cta-btn-secondary"
+                aria-label="Open Resume Pop-up Viewer"
+              >
+                <FileText size={15} />
+                <span>View Resume</span>
+              </button>
+            </div>
+
+            {/* Social Contact Links */}
+            <div className="hero-social-strip">
+              <a 
+                href="https://github.com/HarshKumarGuptagit" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                title="GitHub Profile"
+                aria-label="GitHub Profile of Harsh Kumar Gupta"
+              >
+                <Github size={18} />
+                <span>GitHub</span>
               </a>
-              <a href="mailto:harshkumargupta49@gmail.com" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--text-primary)' }}>
-                <Mail size={24} />
-                <span style={{ fontSize: '1rem', fontWeight: '500' }}>Email</span>
+              <span className="strip-dot">•</span>
+              <a 
+                href="https://www.linkedin.com/in/harshkumargupta49/" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                title="LinkedIn Profile"
+                aria-label="LinkedIn Profile of Harsh Kumar Gupta"
+              >
+                <Linkedin size={18} />
+                <span>LinkedIn</span>
               </a>
-              <a href="/resume.pdf" target="_blank" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--text-primary)' }}>
-                <span style={{ fontSize: '1rem', fontWeight: '500' }}>Resume</span>
+              <span className="strip-dot">•</span>
+              <a 
+                href="mailto:harshkumargupta49@gmail.com" 
+                title="Email Harsh Kumar Gupta"
+                aria-label="Email Harsh Kumar Gupta"
+              >
+                <Mail size={18} />
+                <span>harshkumargupta49@gmail.com</span>
               </a>
             </div>
+
           </div>
 
-          {/* Right Side: Profile Image */}
-          <div style={{
-            flex: '0 1 300px',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center'
-          }}>
-            <div style={{
-              width: '280px',
-              height: '280px',
-              borderRadius: '50%',
-              overflow: 'hidden',
-              border: '4px solid var(--accent-color)',
-              boxShadow: '0 8px 32px var(--accent-half)',
-              transition: 'transform 0.3s ease',
-            }}
-              onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
-              onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
-            >
-              <img
-                src={`${import.meta.env.BASE_URL}images/profile.png`}
-                alt="Profile"
-                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-              />
-              <a href="/resume.pdf" target="_blank" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--text-primary)' }}>
-                <span style={{ fontSize: '1rem', fontWeight: '500' }}>Resume</span>
-              </a>
+          {/* Right Column: Clean Enlarged DP with Ambient Aura (No distracting text badges) */}
+          <div className="hero-column-showcase">
+            <div className="hero-avatar-card">
+              
+              {/* Outer Breathing Glow Ring */}
+              <div className="avatar-ambient-glow" />
+
+              {/* Enlarged Avatar Box */}
+              <div className="avatar-frame-large">
+                <img
+                  src={`${import.meta.env.BASE_URL}images/profile.png`}
+                  alt="Harsh Kumar Gupta - Data Engineer & Analytics Engineer"
+                  className="avatar-large-img"
+                  width="220"
+                  height="220"
+                  onError={(e) => {
+                    e.currentTarget.src = `${import.meta.env.BASE_URL}images/profile-2.jpg`;
+                  }}
+                />
+              </div>
+
             </div>
           </div>
 
         </div>
+
       </div>
     </section>
   );
