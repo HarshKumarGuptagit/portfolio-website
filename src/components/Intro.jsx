@@ -62,6 +62,9 @@ const Intro = () => {
                 <Mail size={24} />
                 <span style={{ fontSize: '1rem', fontWeight: '500' }}>Email</span>
               </a>
+              <a href="/resume.pdf" target="_blank" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--text-primary)' }}>
+                <span style={{ fontSize: '1rem', fontWeight: '500' }}>Resume</span>
+              </a>
             </div>
           </div>
 
@@ -85,10 +88,13 @@ const Intro = () => {
               onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
             >
               <img
-                src={`${import.meta.env.BASE_URL}images/profile.jpg`}
+                src={`${import.meta.env.BASE_URL}images/profile.png`}
                 alt="Profile"
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
               />
+              <a href="/resume.pdf" target="_blank" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--text-primary)' }}>
+                <span style={{ fontSize: '1rem', fontWeight: '500' }}>Resume</span>
+              </a>
             </div>
           </div>
 

@@ -11,6 +11,10 @@ const Education = () => {
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
         <div className="card" style={{ borderLeft: '4px solid var(--accent-color)' }}>
+          <h4 style={{ fontSize: '1.2rem', marginBottom: '0.25rem', color: 'var(--text-primary)' }}>MS in Computer Science and Data Analytics (Remote)</h4>
+          <p style={{ color: 'var(--accent-color)', fontWeight: '500', fontSize: '0.9rem', marginBottom: '1rem' }}>Jul 2026 – Jul 2028</p>
+        </div>
+        <div className="card" style={{ borderLeft: '4px solid var(--accent-color)' }}>
           <h4 style={{ fontSize: '1.2rem', marginBottom: '0.25rem', color: 'var(--text-primary)' }}>Bachelor of Computer Science</h4>
           <p style={{ color: 'var(--accent-color)', fontWeight: '500', fontSize: '0.9rem', marginBottom: '1rem' }}>Kohima Science College, Jotsoma, Nagaland • 2020 - 2023</p>
           <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem' }}>

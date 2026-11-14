@@ -3,6 +3,7 @@ import { Sun, Moon } from 'lucide-react';
 import useScrollReveal from './hooks/useScrollReveal';
 import ScrollProgress from './components/ScrollProgress';
 import Intro from './components/Intro';
+import Background from './components/Background';
 import Tools from './components/Tools';
 import WorkExperience from './components/WorkExperience';
 import Education from './components/Education';
@@ -30,6 +31,7 @@ function App() {
   return (
     <div className="container">
       {/* Theme Toggle Button */}
+      <Background />
       <button
         onClick={toggleTheme}
         className="theme-toggle-btn"

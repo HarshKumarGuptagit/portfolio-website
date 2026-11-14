@@ -4,30 +4,29 @@ import { Briefcase } from 'lucide-react';
 const WorkExperience = () => {
   const experiences = [
     {
-      title: "Data Analytics Engineer",
-      company: "Nxtwave Disruptive Technologies Pvt. Ltd., Hyderabad",
-      period: "Dec 2024 - Present",
+      title: "Data Engineer",
+      company: "Avathon",
+      period: "Aug 2026 – Present",
       points: [
-        "Enabled the Pre-Sales team to track user webinar engagement and retention to facilitate data-backed decision-making.",
-        "Took full ownership of Referral Portal Analytics to boost referrer engagement and ensure sales efforts are prioritized on high-value leads.",
-        "Modeled and built an end-to-end reporting layer for user onboarding and engagement for the \"NIAT Launchpad\" product.",
-        "Collaborated with Pre-Sales and Marketing teams to provide full visibility into lead generation across Google and Meta Ads, calculating key metrics such as CPL, clicks, and impressions.",
-        "Managed and ensured seamless data synchronization into the analytics platform by developing dashboards for ingestion sources like CRM, CloudWatch, and Google Data Transfer service.",
-        "Authored report documents on multi-channel lead generation and provided strategic recommendations to improve efficiency through new performance metrics."
+        "Event-Driven ETL Engineering: Engineered serverless telemetry ETL pipelines using AWS Lambda and implemented a Medallion Architecture on Amazon S3 to process data from solar, wind, and energy storage assets.",
+        "Sensor Data Processing & Accuracy: Processed high-frequency sensor streams into 5-minute statistical windows using Polars and PyArrow, achieving 99.99% data accuracy across Elasticsearch indexes.",
+        "Pipeline Reliability & Recovery: Implemented CI/CD-driven deployments, executed S3-based backfills, and resolved ingestion failures to restore missing asset, site, and meteorological data while strengthening end-to-end pipeline reliability.",
+        "Data Recovery & Operational Continuity: Streamlined pipeline recovery procedures and backfill execution, reducing data restoration turnaround and improving operational continuity."
       ],
       current: true
     },
     {
-      title: "Analytics Engineer Intern",
-      company: "Nxtwave Disruptive Technologies Pvt. Ltd., Hyderabad",
-      period: "Jun 2024 - Dec 2024",
+      title: "Analytics Engineer",
+      company: "Nxtwave",
+      period: "Jun 2024 – Aug 2026",
       points: [
-        "Assisted in the transformation of raw CRM data using SQL and dbt to develop foundational data modeling skills while supporting data reliability through automated stored procedures.",
-        "Gained technical proficiency in BigQuery optimization techniques, including table partitioning and clustering, to improve query performance.",
-        "Developed a strong foundation in GCP, AWS, dbt, Git, and BigQuery through hands-on participation in infrastructure maintenance.",
-        "Built interactive reporting dashboards for stakeholders using Looker Studio to translate complex data into visual insights."
-      ],
-      certificate: "https://drive.google.com/file/d/11i99oPBGhNSXNj1dvyAutcEKvD67tVb2/view?usp=sharing"
+        "ELT Pipeline Automation: Engineered automated ELT pipelines using GCP Cloud Run and Cloud Scheduler to integrate Meta Ads, Salesforce CRM, Google Ads, and GA4 data into BigQuery, reducing reporting turnaround from days to minutes.",
+        "Medallion Data Modeling: Designed and developed Bronze (staging), Silver (intermediate), and Gold (mart) layers in BigQuery using dbt, implementing a Medallion Architecture that reduced data maintenance effort by 40% and improved model scalability.",
+        "Historical Data Tracking: Implemented SCD Type 2 using BigQuery SQL and stored procedures within dbt workflows, ensuring 100% historical tracking accuracy across dimensional models.",
+        "Query Optimization & Access Governance: Optimized BigQuery queries through partitioning, clustering, and performance tuning, improving query performance by 25% and reducing processing costs by 10%; configured IAM roles to manage secure access for 20+ stakeholders and systems.",
+        "Service Analytics & Reporting: Built analytics‑ready data models in BigQuery using dbt and maintained comprehensive dbt documentation, enabling governed self‑service analytics through Hex and reducing ad‑hoc data requests by 30%.",
+        "End-to‑to‑Product Analytics: Managed product analytics across data modelling, table development, insight generation, reporting, and dashboard delivery, translating business requirements into actionable data insights."
+      ]
     }
   ];
 
@@ -50,12 +49,7 @@ const WorkExperience = () => {
               ))}
             </ul>
             {exp.certificate && (
-              <a
-                href={exp.certificate}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="cert-link"
-              >
+              <a href={exp.certificate} target="_blank" rel="noopener noreferrer" className="cert-link">
                 View Completion Certificate
               </a>
             )}
