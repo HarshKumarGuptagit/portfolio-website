@@ -46,7 +46,7 @@ const FloatingContact = () => {
             onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
           >
             <Mail size={20} color="var(--accent-color)" />
-            <span style={{ fontWeight: 500 }}>Message on Gmail</span>
+            <span style={{ fontWeight: 500 }}>Mail on Gmail</span>
           </a>
 
           <a
@@ -99,7 +99,7 @@ const FloatingContact = () => {
           <Linkedin size={18} /> LinkedIn
         </a>
         <a href="mailto:harshkumargupta49@gmail.com" className="mobile-bar-btn primary">
-          <Mail size={18} /> Message on Gmail
+          <Mail size={18} /> Mail on Gmail
         </a>
       </div>
     </>

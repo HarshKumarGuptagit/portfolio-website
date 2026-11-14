@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { X, Download, ExternalLink, FileText, CheckCircle2, Eye, ShieldCheck, ArrowUpRight } from 'lucide-react';
+import { X, Download, FileText, CheckCircle2 } from 'lucide-react';
 
 const ResumeModal = ({ isOpen, onClose }) => {
   const resumeUrl = `${import.meta.env.BASE_URL}resume/resume.pdf`;
@@ -62,29 +62,17 @@ const ResumeModal = ({ isOpen, onClose }) => {
           </div>
 
           <div className="modal-actions-group">
-            {/* Primary Download Button (Desktop header) */}
+            {/* The ONLY Download Resume Button (PC & Mobile) */}
             <a
               href={resumeUrl}
               download="Harsh_Kumar_Gupta_Resume.pdf"
-              className="modal-btn-download desktop-btn-only"
-              title="Download Resume PDF to your device"
-              aria-label="Download Resume PDF"
+              className="modal-btn-download"
+              title="Download Harsh Kumar Gupta Resume PDF"
+              aria-label="Download Harsh Kumar Gupta Resume PDF"
             >
               <Download size={15} />
-              <span>Download PDF</span>
-            </a>
-
-            {/* Open in Separate Tab */}
-            <a
-              href={resumeUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="modal-btn-action"
-              title="Open Resume in a new browser tab"
-              aria-label="Open Resume in a new tab"
-            >
-              <ExternalLink size={15} />
-              <span className="desktop-text-only">Open Tab</span>
+              <span className="download-text-desktop">Download Resume</span>
+              <span className="download-text-mobile">Download</span>
             </a>
 
             {/* Close Button */}
@@ -99,73 +87,13 @@ const ResumeModal = ({ isOpen, onClose }) => {
           </div>
         </div>
 
-        {/* Dedicated Mobile Fast-Action Banner (Always visible on Mobile) */}
-        <div className="modal-mobile-action-card">
-          <div className="mobile-action-text">
-            <span className="mobile-action-lead">Harsh Kumar Gupta — Resume</span>
-            <span className="mobile-action-sub">Data Engineer • AWS &amp; GCP • Spark Streaming</span>
-          </div>
-          <div className="mobile-action-btns-row">
-            <a 
-              href={resumeUrl} 
-              download="Harsh_Kumar_Gupta_Resume.pdf" 
-              className="mobile-action-btn primary"
-              aria-label="Download Harsh Kumar Gupta Resume PDF"
-            >
-              <Download size={15} />
-              <span>Download PDF</span>
-            </a>
-            <a 
-              href={resumeUrl} 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="mobile-action-btn secondary"
-              aria-label="Open Resume in new browser tab"
-            >
-              <ExternalLink size={15} />
-              <span>Open in Tab</span>
-            </a>
-          </div>
-        </div>
-
-        {/* Embedded PDF Viewer with Fallback for both PC and Mobile */}
+        {/* Embedded PDF Viewer for both PC and Mobile (Clean view with no center button) */}
         <div className="resume-modal-body">
-          <object
-            data={`${resumeUrl}#view=FitH&toolbar=0&navpanes=0`}
-            type="application/pdf"
-            className="resume-modal-pdf-object"
-            aria-label="Harsh Kumar Gupta Resume PDF"
-          >
-            {/* Fallback for browsers / devices without native PDF viewer */}
-            <div className="modal-iframe-fallback">
-              <FileText size={42} color="var(--cyan-stream)" />
-              <div className="fallback-text-block">
-                <p className="fallback-title">Harsh Kumar Gupta — Resume PDF</p>
-                <p className="fallback-text">
-                  Your device browser does not display embedded PDFs inline. You can view or download the complete document below:
-                </p>
-              </div>
-              <div className="fallback-buttons-group">
-                <a
-                  href={resumeUrl}
-                  download="Harsh_Kumar_Gupta_Resume.pdf"
-                  className="modal-btn-download"
-                >
-                  <Download size={15} />
-                  <span>Download Resume PDF</span>
-                </a>
-                <a
-                  href={resumeUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="modal-btn-action"
-                >
-                  <ExternalLink size={15} />
-                  <span>Open in Full Browser Tab</span>
-                </a>
-              </div>
-            </div>
-          </object>
+          <iframe
+            src={`${resumeUrl}#view=FitH&toolbar=0&navpanes=0`}
+            title="Harsh Kumar Gupta Resume PDF Preview"
+            className="resume-modal-iframe"
+          />
         </div>
 
       </div>
