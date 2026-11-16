@@ -1,10 +1,12 @@
 import React from 'react';
-import { Radio, Cpu, Database, GitMerge, CheckCircle, ArrowRight } from 'lucide-react';
+import { Radio, Cpu, Database, GitMerge, CheckCircle, ArrowRight, Zap } from 'lucide-react';
 
 const pipelineStages = [
   {
     step: "01",
     stage: "Ingestion & Streaming",
+    color: "#38bdf8",
+    colorClass: "cyan",
     icon: <Radio size={18} color="#38bdf8" />,
     summary: "Capturing high-velocity telemetry, real-time event streams, CDC change feeds, and multi-channel API data.",
     tech: [
@@ -20,6 +22,8 @@ const pipelineStages = [
   {
     step: "02",
     stage: "Distributed Compute & Processing",
+    color: "#34d399",
+    colorClass: "emerald",
     icon: <Cpu size={18} color="#34d399" />,
     summary: "Distributed windowing, real-time micro-batch processing, and high-throughput transformations.",
     tech: [
@@ -34,6 +38,8 @@ const pipelineStages = [
   {
     step: "03",
     stage: "Storage & Cloud Warehousing",
+    color: "#fbbf24",
+    colorClass: "amber",
     icon: <Database size={18} color="#fbbf24" />,
     summary: "Scalable object lakes, partitioned analytical warehouses, and enterprise column stores.",
     tech: [
@@ -47,6 +53,8 @@ const pipelineStages = [
   {
     step: "04",
     stage: "Transformation & Modeling",
+    color: "#a78bfa",
+    colorClass: "violet",
     icon: <GitMerge size={18} color="#a78bfa" />,
     summary: "Medallion architecture staging, dimensional schemas, and historical audit tracking.",
     tech: [
@@ -59,6 +67,8 @@ const pipelineStages = [
   {
     step: "05",
     stage: "Quality, Observability & Serving",
+    color: "#f472b6",
+    colorClass: "rose",
     icon: <CheckCircle size={18} color="#f472b6" />,
     summary: "Automated test suites, backfills, anomaly detection, and governed self-service analytics.",
     tech: [
@@ -84,25 +94,30 @@ const Tools = () => {
 
       <div className="pipeline-stages-container">
         {pipelineStages.map((stage, idx) => (
-          <div key={stage.step} className="pipeline-stage-card">
+          <div key={stage.step} className={`pipeline-stage-card stage-theme-${stage.colorClass}`}>
             
             <div className="stage-card-meta">
               <span className="stage-index-badge">{stage.step}</span>
               <div className="stage-icon-wrap">{stage.icon}</div>
               <h3 className="stage-title">{stage.stage}</h3>
+              <span className="stage-pulse-beacon" />
             </div>
 
             <p className="stage-summary">{stage.summary}</p>
 
             <div className="stage-tech-pills">
-              {stage.tech.map((item, tIdx) => (
-                <span 
-                  key={tIdx} 
-                  className={`tech-badge-clean ${item.includes('Spark Streaming') ? 'highlight-tech' : ''}`}
-                >
-                  {item}
-                </span>
-              ))}
+              {stage.tech.map((item, tIdx) => {
+                const isSparkStreaming = item.includes('Spark Streaming');
+                return (
+                  <span 
+                    key={tIdx} 
+                    className={`tech-badge-clean ${isSparkStreaming ? 'highlight-tech spark-stream-glow' : ''}`}
+                  >
+                    {isSparkStreaming && <Zap size={11} className="spark-icon-pulse" />}
+                    <span>{item}</span>
+                  </span>
+                );
+              })}
             </div>
 
             {idx < pipelineStages.length - 1 && (

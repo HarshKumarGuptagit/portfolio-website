@@ -1,5 +1,5 @@
 import React from 'react';
-import { Briefcase, Calendar, MapPin, Check, ExternalLink } from 'lucide-react';
+import { Briefcase, Calendar, MapPin, Check, ExternalLink, Zap, ShieldCheck, TrendingUp, Activity, Award } from 'lucide-react';
 
 const WorkExperience = () => {
   const experiences = [
@@ -10,6 +10,11 @@ const WorkExperience = () => {
       location: "Bengaluru, India",
       active: true,
       summary: "Telemetry ETL and serverless streaming pipelines for solar, wind, and renewable storage assets.",
+      metrics: [
+        { label: "Data Accuracy", value: "99.99%", icon: <Activity size={13} /> },
+        { label: "Window Aggregations", value: "5-Min Windows", icon: <Zap size={13} /> },
+        { label: "Pipeline Uptime", value: "24/7 Operational", icon: <ShieldCheck size={13} /> }
+      ],
       stack: ["AWS Lambda", "Amazon S3", "Medallion Architecture", "Polars", "PyArrow", "Elasticsearch", "CI/CD"],
       bulletPoints: [
         "Engineered serverless telemetry ETL pipelines using AWS Lambda and implemented a Medallion Architecture on Amazon S3 to ingest renewable energy asset data.",
@@ -25,6 +30,11 @@ const WorkExperience = () => {
       location: "Hyderabad, India",
       active: false,
       summary: "Automated ELT pipelines, Medallion data warehouse in BigQuery, and enterprise dbt dimensional modeling.",
+      metrics: [
+        { label: "Model Maintenance", value: "-40% Reduction", icon: <TrendingUp size={13} /> },
+        { label: "Query Performance", value: "+25% Speedup", icon: <Zap size={13} /> },
+        { label: "Historical Audit", value: "100% SCD Type-2", icon: <Check size={13} /> }
+      ],
       stack: ["Google BigQuery", "dbt", "GCP Cloud Run", "Cloud Scheduler", "SCD Type-2", "Hex", "Looker Studio"],
       bulletPoints: [
         "Engineered automated ELT pipelines using GCP Cloud Run and Cloud Scheduler integrating Meta Ads, Salesforce, Google Ads, and GA4 data into BigQuery.",
@@ -38,10 +48,10 @@ const WorkExperience = () => {
   ];
 
   return (
-    <section className="section-margin" id="work">
+    <section className="section-margin" id="work" aria-labelledby="work-heading">
       <div className="section-header-clean">
         <div className="section-tag-mono">03 // TRACK RECORD</div>
-        <h2 className="section-heading-clean">Work Experience</h2>
+        <h2 id="work-heading" className="section-heading-clean">Work Experience</h2>
         <p className="section-subtext-clean">
           Engineering production pipelines and scalable data platforms in fast-paced environments.
         </p>
@@ -51,13 +61,20 @@ const WorkExperience = () => {
         {experiences.map((exp, idx) => (
           <div key={idx} className={`exp-log-card ${exp.active ? 'is-active' : ''}`}>
             
+            {/* Header info */}
             <div className="exp-log-header">
               <div>
                 <div className="exp-role-row">
                   <h3 className="exp-role-title">{exp.role}</h3>
                   <span className="exp-at-symbol">@</span>
                   <span className="exp-company-text">{exp.company}</span>
-                  {exp.active && <span className="exp-active-badge">CURRENT</span>}
+                  {exp.active ? (
+                    <span className="exp-active-badge">
+                      <span className="active-dot"></span> CURRENT ROLE
+                    </span>
+                  ) : (
+                    <span className="exp-past-badge">COMPLETED</span>
+                  )}
                 </div>
                 <div className="exp-subinfo">
                   <span className="exp-period">{exp.period}</span>
@@ -65,6 +82,17 @@ const WorkExperience = () => {
                   <span className="exp-location">{exp.location}</span>
                 </div>
               </div>
+            </div>
+
+            {/* Impact Metric Chips */}
+            <div className="exp-metrics-row">
+              {exp.metrics.map((m, mIdx) => (
+                <div key={mIdx} className="exp-metric-chip">
+                  <span className="metric-chip-icon">{m.icon}</span>
+                  <span className="metric-chip-val">{m.value}</span>
+                  <span className="metric-chip-lbl">{m.label}</span>
+                </div>
+              ))}
             </div>
 
             <p className="exp-lead-summary">{exp.summary}</p>
@@ -93,10 +121,12 @@ const WorkExperience = () => {
                   href={exp.certificate} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="inline-cert-link"
+                  className="exp-cert-btn"
+                  title="View Verified Internship Completion Certificate"
                 >
-                  <span>View Internship Completion Certificate</span>
-                  <ExternalLink size={13} />
+                  <Award size={14} />
+                  <span>Verified Completion Certificate</span>
+                  <ExternalLink size={12} />
                 </a>
               </div>
             )}

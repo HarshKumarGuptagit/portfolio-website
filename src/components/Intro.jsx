@@ -1,5 +1,5 @@
 import React from 'react';
-import { Github, Linkedin, Mail, ArrowDown, FileText } from 'lucide-react';
+import { Github, Linkedin, Mail, ArrowDown, FileText, Sparkles, Terminal, Activity } from 'lucide-react';
 
 const Intro = ({ onOpenResume }) => {
   return (
@@ -11,7 +11,7 @@ const Intro = ({ onOpenResume }) => {
           {/* Left Column: Authoritative Text & Actions */}
           <div className="hero-column-content">
             
-            {/* Live Status Pill */}
+            {/* Live Status Pill with Beacon */}
             <div className="hero-status-row">
               <span className="clean-status-indicator">
                 <span className="status-ping-dot" />
@@ -22,12 +22,12 @@ const Intro = ({ onOpenResume }) => {
               </span>
             </div>
 
-            {/* Name Heading with Subtle Glow */}
+            {/* Name Heading with Modern Multi-stop Gradient */}
             <h1 className="hero-name-heading">
               Harsh Kumar <span className="hero-name-accent">Gupta</span>
             </h1>
 
-            {/* Animated Role Monospace Line */}
+            {/* Animated Role Monospace Terminal Line */}
             <div className="hero-role-terminal">
               <span className="terminal-prefix">&gt;</span>
               <span className="terminal-role-text">Data Engineer</span>
@@ -36,11 +36,27 @@ const Intro = ({ onOpenResume }) => {
               <span className="terminal-cursor" />
             </div>
 
-            {/* Reduced Concise Pitch */}
+            {/* Concise Pitch */}
             <p className="hero-pitch-lead">
               Data Engineer building scalable batch and real-time streaming pipelines (<strong>Spark Streaming</strong>, <strong>AWS Lambda</strong>, <strong>Kafka</strong>) 
               and cloud Medallion data platforms across <strong>AWS</strong> &amp; <strong>GCP</strong>.
             </p>
+
+            {/* Quick High-Signal Telemetry Tags */}
+            <div className="hero-telemetry-tags">
+              <span className="hero-tag-item cyan">
+                <span className="tag-pulse"></span>
+                <span>Spark Streaming &amp; Kafka</span>
+              </span>
+              <span className="hero-tag-item emerald">
+                <span className="tag-pulse"></span>
+                <span>Medallion Lakes (S3 / BigQuery)</span>
+              </span>
+              <span className="hero-tag-item amber">
+                <span className="tag-pulse"></span>
+                <span>SCD Type-2 &amp; dbt Modeling</span>
+              </span>
+            </div>
 
             {/* Primary Action Buttons */}
             <div className="hero-cta-group">
@@ -59,36 +75,37 @@ const Intro = ({ onOpenResume }) => {
               </button>
             </div>
 
-            {/* Social Contact Links */}
+            {/* Sleek Social Contact Badge Pills */}
             <div className="hero-social-strip">
               <a 
                 href="https://github.com/HarshKumarGuptagit" 
                 target="_blank" 
                 rel="noopener noreferrer" 
+                className="social-pill"
                 title="GitHub Profile"
                 aria-label="GitHub Profile of Harsh Kumar Gupta"
               >
-                <Github size={18} />
+                <Github size={15} />
                 <span>GitHub</span>
               </a>
-              <span className="strip-dot">•</span>
               <a 
                 href="https://www.linkedin.com/in/harshkumargupta49/" 
                 target="_blank" 
                 rel="noopener noreferrer" 
+                className="social-pill"
                 title="LinkedIn Profile"
                 aria-label="LinkedIn Profile of Harsh Kumar Gupta"
               >
-                <Linkedin size={18} />
+                <Linkedin size={15} />
                 <span>LinkedIn</span>
               </a>
-              <span className="strip-dot">•</span>
               <a 
                 href="mailto:harshkumargupta49@gmail.com" 
+                className="social-pill"
                 title="Email Harsh Kumar Gupta"
                 aria-label="Email Harsh Kumar Gupta"
               >
-                <Mail size={18} />
+                <Mail size={15} />
                 <span className="social-email-desktop">harshkumargupta49@gmail.com</span>
                 <span className="social-email-mobile">Email</span>
               </a>
@@ -96,7 +113,7 @@ const Intro = ({ onOpenResume }) => {
 
           </div>
 
-          {/* Right Column: Clean Enlarged DP with Ambient Aura (No distracting text badges) */}
+          {/* Right Column: Clean Enlarged DP with Ambient Aura */}
           <div className="hero-column-showcase">
             <div className="hero-avatar-card">
               
@@ -115,6 +132,12 @@ const Intro = ({ onOpenResume }) => {
                     e.currentTarget.src = `${import.meta.env.BASE_URL}images/profile-2.jpg`;
                   }}
                 />
+              </div>
+
+              {/* Subtle Tech Status Beacon on Corner */}
+              <div className="avatar-corner-beacon" title="Pipeline Status: Online & Processing">
+                <span className="beacon-ping"></span>
+                <span className="beacon-core"></span>
               </div>
 
             </div>

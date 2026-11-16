@@ -1,5 +1,5 @@
 import React from 'react';
-import { GitBranch, ExternalLink, Github, ArrowUpRight } from 'lucide-react';
+import { GitBranch, ExternalLink, Github, ArrowUpRight, ArrowRight, Layers, Database } from 'lucide-react';
 
 const topRepositories = [
   {
@@ -8,7 +8,7 @@ const topRepositories = [
     repoName: "HarshKumarGuptagit/banking-data-engineering-pipeline",
     repoUrl: "https://github.com/HarshKumarGuptagit/banking-data-engineering-pipeline",
     badge: "Real-Time CDC & Medallion",
-    architectureFlow: "PostgreSQL ➔ Debezium CDC ➔ Kafka ➔ MinIO Lake ➔ Airflow ➔ Snowflake (dbt) ➔ Looker Studio",
+    architectureNodes: ["PostgreSQL", "Debezium CDC", "Kafka", "MinIO Lake", "Airflow", "Snowflake (dbt)", "Looker Studio"],
     description: "End-to-end modern data engineering pipeline for banking analytics. Captures real-time financial transactions via Debezium Change Data Capture (CDC), streams events through Kafka into MinIO object storage, orchestrates containerized DAGs in Airflow, transforms dimensional models in Snowflake with dbt (SCD Type-2), and serves Looker Studio dashboards.",
     highlights: [
       "Real-time event streaming with Apache Kafka and Debezium CDC",
@@ -24,7 +24,7 @@ const topRepositories = [
     repoName: "HarshKumarGuptagit/pubg-analytics-end-to-end-pipeline",
     repoUrl: "https://github.com/HarshKumarGuptagit/pubg-analytics-end-to-end-pipeline",
     badge: "GCP Cloud ELT & Gaming Telemetry",
-    architectureFlow: "PUBG Developer API ➔ Python Ingestion Engine ➔ Google BigQuery ➔ dbt Transformations ➔ Looker Studio",
+    architectureNodes: ["PUBG Developer API", "Python Engine", "Google BigQuery", "dbt Transformations", "Looker Studio"],
     description: "Robust cloud ELT pipeline extracting granular esports match data and player telemetry from the official PUBG Developer API. Orchestrates automated batch ingestion via containerized Apache Airflow directly into Google BigQuery with JSON-native schemas, transforming raw telemetry into high-performance dimensional models with dbt for Looker Studio analytics.",
     highlights: [
       "Automated extraction of esports player match telemetry from PUBG API",
@@ -40,7 +40,7 @@ const topRepositories = [
     repoName: "HarshKumarGuptagit/Data-Analytics-Portfolio",
     repoUrl: "https://github.com/HarshKumarGuptagit/Data-Analytics-Portfolio",
     badge: "Analytics Engineering & BI",
-    architectureFlow: "Raw Business Events ➔ SQL & Python Modeling ➔ Funnel & Churn Analysis ➔ BI Dashboards",
+    architectureNodes: ["Raw Business Events", "SQL & Python Staging", "Cohort & Churn Logic", "Tableau & Looker BI"],
     description: "Curated suite of production data analysis and analytics engineering workflows. Models customer churn, sales revenue funnels, and user engagement cohorts using advanced SQL window functions, Python (Pandas/NumPy), and interactive dashboards in Tableau and Looker Studio.",
     highlights: [
       "Customer Churn and Lifetime Value (LTV) cohort analysis",
@@ -91,23 +91,34 @@ const Projects = () => {
                 title={`Open ${repo.title} on GitHub`}
                 aria-label={`Open repository ${repo.title} on GitHub`}
               >
-                <Github size={15} />
+                <Github size={14} />
                 <span>View on GitHub</span>
-                <ArrowUpRight size={14} />
+                <ArrowUpRight size={13} />
               </a>
             </div>
 
-            {/* Title & Arch Flow */}
+            {/* Title */}
             <h3 className="repo-main-title">
               <a href={repo.repoUrl} target="_blank" rel="noopener noreferrer">
                 {repo.title}
               </a>
             </h3>
 
-            {/* Architecture conduit visualization */}
-            <div className="repo-pipeline-flow">
-              <span className="pipeline-flow-prefix">PIPELINE:</span>
-              <span className="pipeline-flow-path">{repo.architectureFlow}</span>
+            {/* Interactive Architecture Flow Diagram */}
+            <div className="repo-flow-conduit-box">
+              <span className="flow-conduit-tag">CONDUIT ARCHITECTURE</span>
+              <div className="flow-conduit-track">
+                {repo.architectureNodes.map((node, nIdx) => (
+                  <React.Fragment key={nIdx}>
+                    <span className="flow-conduit-node">{node}</span>
+                    {nIdx < repo.architectureNodes.length - 1 && (
+                      <span className="flow-conduit-arrow">
+                        <ArrowRight size={12} />
+                      </span>
+                    )}
+                  </React.Fragment>
+                ))}
+              </div>
             </div>
 
             {/* Description */}
@@ -115,7 +126,7 @@ const Projects = () => {
 
             {/* Key Engineering Highlights */}
             <div className="repo-highlights-box">
-              <span className="highlights-title">Core Engineering Highlights:</span>
+              <span className="highlights-title">Key Engineering Highlights:</span>
               <ul className="highlights-list">
                 {repo.highlights.map((item, hIdx) => (
                   <li key={hIdx} className="highlight-item">
